@@ -83,18 +83,14 @@ export default function ItemList(){
     for (let i = 0; i < items.length; i++) {
       let value = <Item {...items[i]}/>
       itemArray.push(
-        <ul>
-          <li key={i} className="p-2 m-4 bg-slate-900 max-w-sm">
+        <li key={i} className="p-2 m-4 bg-slate-900 max-w-sm">
             {value}
-          </li>
-        </ul>
+        </li>
       )
       }
 
     return(
-       <section>
-        {itemArray}
-       </section>
+        <ul>{itemArray}</ul>
     );
 }
 
