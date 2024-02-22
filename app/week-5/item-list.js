@@ -36,7 +36,7 @@ export default function ItemList() {
       <div className="flex space-x-3 p-5">
         <p>Sort By:</p>
         <button
-          className="bg-amber-700 px-7 py-1 "
+          className="bg-amber-700 px-7 py-1 active:bg-amber-800"
           onClick={() => {
             setSortBy("name");
             setIsGrouped(false);
@@ -45,7 +45,7 @@ export default function ItemList() {
           Name
         </button>
         <button
-          className="bg-amber-700 px-7 py-1 m1-1"
+          className="bg-amber-700 px-7 py-1 m1-1 active:bg-amber-800"
           onClick={() => {
             setSortBy("category");
             setIsGrouped(false);
@@ -54,7 +54,7 @@ export default function ItemList() {
           Category
         </button>
         <button
-          className="bg-amber-700 px-7 py-1 m1-1"
+          className="bg-amber-700 px-7 py-1 m1-1 active:bg-amber-800"
           onClick={() => {
             setSortBy("name");
             setIsGrouped(true);
@@ -67,7 +67,7 @@ export default function ItemList() {
         Object.keys(groupedItems).sort().map((category) => {
           return (
             <div key={category}>
-              <div className="capitalize">{category}</div>
+              <div className="capitalize text-xl">{category}</div>
               {groupedItems[category].map((item) => (
                 <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
                   <Item
