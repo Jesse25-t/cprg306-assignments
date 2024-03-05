@@ -1,5 +1,5 @@
 "use client";
-import Item from "./item";
+import Item from "../week-3/item";
 import { useState } from "react";
 import { useMemo } from "react";
 import jsonData from "./item.json";
@@ -14,12 +14,12 @@ const sortByKey = (key) => (a, b) => {
   return 0;
 };
 
-export default function ItemList() {
+export default function ItemList({ allItems }) {
   const [sortBy, setSortBy] = useState("name");
   const [isGrouped, setIsGrouped] = useState(false);
   const sortedData = useMemo(() => {
-    return [...jsonData].sort(sortByKey(sortBy));
-  }, [sortBy]);
+    return [...(allItems ?? jsonData)].sort(sortByKey(sortBy));
+  }, [sortBy, allItems]);
   const groupedItems = useMemo(() => {
     return sortedData.reduce((acc, item) => {
       if (acc[item.category] === undefined) {
@@ -33,7 +33,7 @@ export default function ItemList() {
 
   return (
     <div>
-      <div className="flex space-x-3 p-5">
+      <div className="flex space-x-3 p-1">
         <p>Sort By:</p>
         <button
           className="bg-amber-700 px-7 py-1 active:bg-amber-800"
@@ -64,22 +64,24 @@ export default function ItemList() {
         </button>
       </div>
       {isGrouped &&
-        Object.keys(groupedItems).sort().map((category) => {
-          return (
-            <div key={category}>
-              <div className="capitalize text-xl">{category}</div>
-              {groupedItems[category].map((item) => (
-                <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
-                  <Item
-                    name={item.name}
-                    category={item.category}
-                    quantity={item.quantity}
-                  />
-                </div>
-              ))}
-            </div>
-          );
-        })}
+        Object.keys(groupedItems)
+          .sort()
+          .map((category) => {
+            return (
+              <div key={category}>
+                <div className="capitalize text-xl">{category}</div>
+                {groupedItems[category].map((item) => (
+                  <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
+                    <Item
+                      name={item.name}
+                      category={item.category}
+                      quantity={item.quantity}
+                    />
+                  </div>
+                ))}
+              </div>
+            );
+          })}
       {!isGrouped &&
         sortedData.map((item) => (
           <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
