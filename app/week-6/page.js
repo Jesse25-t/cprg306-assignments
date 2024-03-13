@@ -1,4 +1,4 @@
-import AddItem from "./addNewItem";
+import AddItem from "./add-new-item";
 
 export default function MyFunction() {
   return (

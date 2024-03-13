@@ -13,7 +13,6 @@ const loadDogBreeds = async () => {
 const loadSelectedDogBreed = async (breed) => {
     const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
     const data = await response.json();
-    console.log(data);
     return data.message;
 };
 
@@ -63,7 +62,7 @@ useEffect(() => {
       <select onChange={handleBreedChange} className="text-black">
         {dogBreeds.map((breed) => (
           <option key={breed} value={breed}>
-            {breed}
+            {breed} 
           </option>
         ))}
       </select>

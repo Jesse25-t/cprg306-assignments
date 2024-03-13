@@ -14,7 +14,7 @@ const sortByKey = (key) => (a, b) => {
   return 0;
 };
 
-export default function ItemList({ allItems }) {
+export default function ItemList({ allItems, selectItem }) {
   const [sortBy, setSortBy] = useState("name");
   const [isGrouped, setIsGrouped] = useState(false);
   const sortedData = useMemo(() => {
@@ -30,7 +30,7 @@ export default function ItemList({ allItems }) {
       return acc;
     }, {});
   }, [sortedData]);
-
+console.log(selectItem)
   return (
     <div>
       <div className="flex space-x-3 p-1">
@@ -71,7 +71,7 @@ export default function ItemList({ allItems }) {
               <div key={category}>
                 <div className="capitalize text-xl">{category}</div>
                 {groupedItems[category].map((item) => (
-                  <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
+                  <div className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" onClick={()=>selectItem((name) => name = <Item name={item.name}/> )}>
                     <Item
                       name={item.name}
                       category={item.category}
@@ -84,7 +84,7 @@ export default function ItemList({ allItems }) {
           })}
       {!isGrouped &&
         sortedData.map((item) => (
-          <div className="p-2 m-4 bg-slate-900 max-w-sm" key={item.id}>
+          <div className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" key={item.id} >
             <Item
               name={item.name}
               category={item.category}
