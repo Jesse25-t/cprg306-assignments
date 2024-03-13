@@ -30,7 +30,11 @@ export default function ItemList({ allItems, selectItem }) {
       return acc;
     }, {});
   }, [sortedData]);
-console.log(selectItem)
+
+// console.log(sortedData.map((items) => {
+//     `These are all the items ${items.name}`
+// }))
+
   return (
     <div>
       <div className="flex space-x-3 p-1">
@@ -71,7 +75,9 @@ console.log(selectItem)
               <div key={category}>
                 <div className="capitalize text-xl">{category}</div>
                 {groupedItems[category].map((item) => (
-                  <div className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" onClick={()=>selectItem((name) => name = <Item name={item.name}/> )}>
+                  <div 
+                  className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" 
+                  onClick={()=>selectItem(item.name)}>
                     <Item
                       name={item.name}
                       category={item.category}
@@ -84,7 +90,9 @@ console.log(selectItem)
           })}
       {!isGrouped &&
         sortedData.map((item) => (
-          <div className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" key={item.id} >
+          <div className="p-2 m-4 bg-slate-900 max-w-sm hover:bg-amber-800" 
+          key={item.id} 
+          onClick={()=>selectItem(item.name)}>
             <Item
               name={item.name}
               category={item.category}
