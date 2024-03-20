@@ -16,12 +16,12 @@ export default function Page(){
         <div className="flex flex-col items-center">
             <p>{user ? <Home/> : notLoggedIn}</p>
             {/* {user.email} */}
-            {user && user.displayName}
+            {user && user.displayName} 
             <p>
                 {user ? (
                     <button className="text-green-700" onClick={firebaseSignOut}>Sign Out</button>
                 ) : (
-                    <button onClick={gitHubSignIn}>Sign in with GitHub</button>
+                    <button className="text-green-700" onClick={gitHubSignIn}>Sign in with GitHub</button>
                 )}
             </p>
         </div>
